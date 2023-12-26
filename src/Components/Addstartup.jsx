@@ -35,7 +35,6 @@ function Addstartup() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Add any additional headers as needed
         },
         body: JSON.stringify(postData),
       });
@@ -62,7 +61,6 @@ function Addstartup() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      // Form is valid, submit the data or perform further actions
       console.log("Form data submitted:", formData);
       handlePostRequest(formData);
     }
@@ -70,8 +68,6 @@ function Addstartup() {
 
   const validateForm = (data) => {
     let errors = {};
-
-    // Example validation rules (you can adjust these based on your requirements)
     if (!data.FounderName) {
       errors.FounderName = "Founder Name is required";
     }

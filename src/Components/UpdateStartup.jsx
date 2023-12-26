@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link,useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 function UpdateStartup() {
   console.log("Update component reran");
@@ -20,7 +20,7 @@ function UpdateStartup() {
   function formatDateForInput(dateString) {
     const dateObject = new Date(dateString);
     const year = dateObject.getFullYear();
-    let month = (dateObject.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
+    let month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
     let day = dateObject.getDate().toString().padStart(2, "0");
 
     return `${year}-${month}-${day}`;
@@ -65,7 +65,7 @@ function UpdateStartup() {
 
     // Track changes in the changedData array
     const changedItem = {
-      operationType: 2, // Operation type: 2 for replace
+      operationType: 2, // Operation type 2 is for replace
       path: name,
       op: "replace",
       value: value,
@@ -80,7 +80,6 @@ function UpdateStartup() {
   const validateForm = (data) => {
     let errors = {};
 
-    // Example validation rules (you can adjust these based on your requirements)
     if (!data.founderName) {
       errors.FounderName = "Founder Name is required";
     }
@@ -141,17 +140,18 @@ function UpdateStartup() {
     return errors;
   };
 
-  async function handlePatchRequest(formData)
-  {
-
+  async function handlePatchRequest(formData) {
     try {
-      const response = await fetch(`http://localhost:49407/api/PatchStartup/${startupId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(changedData),
-      });
+      const response = await fetch(
+        `http://localhost:49407/api/PatchStartup/${startupId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(changedData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -159,7 +159,7 @@ function UpdateStartup() {
 
       console.log("PATCH request successful");
       window.alert("Company updated successfully!");
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error("Error making PATCH request:", error);
       window.alert("Error making PATCH request:", error);
@@ -174,11 +174,9 @@ function UpdateStartup() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      // Form is valid, submit the data or perform further actions
       console.log("Form data submitted:", formData);
       handlePatchRequest(changedData);
     }
-
   }
 
   return (
@@ -311,7 +309,7 @@ function UpdateStartup() {
               </div>
               <span className="text-danger">{errors.BusinessLocation}</span>
             </div>
-            {/* */}
+
             <div className="form-group row">
               <div>
                 <label className="mt-2 h5">Employee Count:</label>
