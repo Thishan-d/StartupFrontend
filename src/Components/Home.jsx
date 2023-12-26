@@ -17,10 +17,8 @@ function Home() {
       window.alert("Error occured!", error);
       console.error("Error making GET request:", error);
     }
-  };
+  }
   useEffect(() => {
-    // Define an async function to make the GET request
-
     fetchData();
   }, []);
 
@@ -42,6 +40,7 @@ function Home() {
         }
 
         // If the deletion is successful, fetch updated data
+        window.alert("Company deleted successfully!");
         fetchData();
       } catch (error) {
         window.alert("Error making DELETE request:", error);
@@ -61,9 +60,12 @@ function Home() {
                   <div className="card-body">
                     <h5 className="card-title">Founder :{item.founderName}</h5>
                     <p className="card-text">{item.description}</p>
-                    <a href="#" className="btn btn-primary">
+                    <Link
+                      className="btn btn-primary"
+                      to={`/updateStartup/${item.startupCompanyId}`}
+                    >
                       View
-                    </a>
+                    </Link>
                     <button
                       className="btn btn-danger mx-2"
                       onClick={(e) => handleDelete(item.startupCompanyId)}
